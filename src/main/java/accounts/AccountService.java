@@ -1,7 +1,5 @@
 package accounts;
 
-import org.eclipse.jetty.server.Authentication;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,6 +31,4 @@ public class AccountService {
     public void deleteSession(String sessionId) {
         sessionIdToProfile.remove(sessionId);
     }
-
-
 }

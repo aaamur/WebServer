@@ -1,7 +1,5 @@
 package accounts;
 
-import org.eclipse.jetty.server.Authentication;
-
 public class UserProfile {
     private String login;
     private String password;
@@ -11,7 +9,6 @@ public class UserProfile {
         this.login = login;
         this.password = password;
         this.email = email;
-
     }
 
     public UserProfile(String login) {
