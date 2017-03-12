@@ -54,7 +54,7 @@ public class UsersServlet extends HttpServlet {
     }
 
     public boolean isSignUpUser(String login) {
-        UserProfile profile = accountService.getUserByLogin("login");
+        UserProfile profile = accountService.getUserByLogin(login);
         if (profile == null) {
             return false;
         }
