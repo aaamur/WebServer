@@ -10,6 +10,9 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.example.HelloServlet;
 import servlets.SessionServlet;
+import servlets.UsersServlet;
+
+import javax.servlet.Servlet;
 
 
 public class Main {
@@ -23,6 +26,7 @@ public class Main {
 
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
         context.addServlet(new ServletHolder(new SessionServlet(accountService)), "/api/v1/sessions");
+        context.addServlet(new ServletHolder(new UsersServlet(accountService)), "/api/v1/users");
 
 
         ResourceHandler resourceHandler = new ResourceHandler();
@@ -34,7 +38,7 @@ public class Main {
         HandlerList handlers = new HandlerList();
         handlers.setHandlers( new Handler[]{resourceHandler, context});
 
-        Server server = new Server(8888);
+        Server server = new Server(8890);
         server.setHandler(handlers);
         server.start();
         server.join();
