@@ -34,4 +34,30 @@ public class UsersServlet extends HttpServlet {
         }
     }
 
+    public void doPost(HttpServletRequest request,
+                       HttpServletResponse response) throws ServletException,IOException {
+        String login = request.getParameter("login");
+        String password = request.getParameter("password");
+        String email    = request.getParameter("email");
+
+        if (login == null || password == null){
+            response.setContentType("text/html;charset=utf-8");
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
+
+        if (isSignUpUser(login)) {
+            response.setContentType("text/html;charset=utf-8");
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
+        UserProfile profile = new UserProfile(login, password, email);
+        accountService.addNewUser(profile);
+    }
+
+    public boolean isSignUpUser(String login) {
+        UserProfile profile = accountService.getUserByLogin("login");
+        if (profile == null) {
+            return false;
+        }
+        return true;
+    }
 }
