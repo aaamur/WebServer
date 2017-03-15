@@ -38,7 +38,7 @@ public class Main {
         HandlerList handlers = new HandlerList();
         handlers.setHandlers( new Handler[]{resourceHandler, context});
 
-        Server server = new Server(8890);
+        Server server = new Server(8899);
         server.setHandler(handlers);
         server.start();
         server.join();

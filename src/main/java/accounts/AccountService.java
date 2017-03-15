@@ -1,5 +1,7 @@
 package accounts;
 
+import org.eclipse.jetty.server.Authentication;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,18 +19,26 @@ public class AccountService {
     }
 
     public UserProfile getUserByLogin (String login) {
+
         return loginToProfile.get(login);
     }
 
     public UserProfile getUserBySession (String sessionId) {
+
         return sessionIdToProfile.get(sessionId);
     }
 
     public void addSession(String sessionId, UserProfile userProfile) {
+
         sessionIdToProfile.put(sessionId,userProfile);
     }
 
     public void deleteSession(String sessionId) {
         sessionIdToProfile.remove(sessionId);
+    }
+
+    public void deleteUserProfile (String login) {
+        UserProfile profile = loginToProfile.get(login);
+        profile.setEnable(false);
     }
 }
